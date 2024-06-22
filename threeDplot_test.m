@@ -2,40 +2,43 @@
 % run this script to generate 3D plot of a test image, Points are manually
 % implemented and later on received by gen12Points function
 
+
+% assign 2D parameters, later calculated  
+roomDepth = 500;
+roomHeight = 300;
+roomWidth = 500;
+
+
 % manually assign Points 
 Points = zeros(12, 2);
 
-Points(1 , :) = [280, 412];
-Points(2 , :) = [580, 412];
-Points(3 , :) = [1, 620];
+Points(1, :) = [290, 412];
+Points(2, :) = [570, 412];
+Points(3, :) = [1, 620];
 Points(4, :) = [848, 620];
-Points(5 , :) = [1, 620];
+Points(5, :) = [1, 620];
 Points(6, :) = [848, 620];
-Points(7, :) = [280, 206];
-Points(8, :) = [580, 206];
+Points(7, :) = [290, 206];
+Points(8, :) = [570, 206];
 Points(9, :) = [0, 0];
 Points(10, :) = [848, 0];
 Points(11, :) = [0, 0];
 Points(12, :) = [848, 0];
 
-% assign 2D parameters, later calculated 
-outputWidth = 200;
-outputHeight = 200;
-
 % insert image 
 input_image = imread('CV-Challenge-24-Datensatz/simple-room.png');
 
 % calculate each wall perspektive
-leftWall = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),outputWidth,outputHeight);
-rightWall = projective_transformation(input_image,Points(8, :),Points(12, :),Points(2, :),Points(6, :),outputWidth,outputHeight);
-rearWall = projective_transformation(input_image,Points(7, :),Points(8, :),Points(1, :),Points(2, :),outputWidth,outputHeight);
-floorWall = projective_transformation(input_image,Points(1, :),Points(2, :),Points(3, :),Points(4, :),outputWidth,outputHeight);
-ceilingWall = projective_transformation(input_image,Points(9, :),Points(10, :),Points(7, :),Points(8, :),outputWidth,outputHeight);
+leftWall = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),roomDepth,roomHeight);
+rightWall = projective_transformation(input_image,Points(8, :),Points(12, :),Points(2, :),Points(6, :),roomDepth,roomHeight);
+rearWall = projective_transformation(input_image,Points(7, :),Points(8, :),Points(1, :),Points(2, :),roomWidth,roomHeight);
+floorWall = projective_transformation(input_image,Points(1, :),Points(2, :),Points(3, :),Points(4, :),roomWidth,roomDepth);
+ceilingWall = projective_transformation(input_image,Points(9, :),Points(10, :),Points(7, :),Points(8, :),roomWidth,roomDepth);
 
-% insert 3D parameters 
-roomDepth = 200;
-roomHeight = 200;
-roomWidth = 200;
+
+
+% Create figure
+f = figure;
 
 % Plot left wall
 leftX = [0 0; 0 0];
@@ -74,11 +77,25 @@ zlabel('Z');
 title('3D Room Visualization');
 axis vis3d;
 
+% turn off axis 
+axis off;
+
 % Enable rotation
 rotate3d on;
 
-% turn off axis 
-%axis off;
+% Set camera
+% Create toolbar for camera movement
+cameratoolbar(f);
+
+ax = gca;
+% Set camera target at slightly in front of center of rear wall
+ax.CameraTarget = [roomWidth / 2, roomDepth * 0.8, roomHeight / 2];
+% Set camera position at center of "entrance"
+campos([roomWidth / 2, 0, roomHeight / 2]);
+% Set field of view
+ax.CameraViewAngle = 90;
+% Enable perspective view
+ax.Projection = 'perspective';
 
 % Show the plot
 hold off;
