@@ -1,7 +1,7 @@
 %% Script for testing projective_transformation
 
 % Load the input image
-input_image = imread('simple-room.png');
+input_image = imread('CV-Challenge-24-Datensatz/simple-room.png');
 
 % Display the input image
 figure;
@@ -10,13 +10,19 @@ title('Input Image');
 
 % Define the coordinates of the four corners of the trapezoid
 
-TL = [1, 1];
+TL = [-300, -300];
 TR = [280, 206];
 BL = [1, 619];
+BL = [-300, 900];
 BR = [280, 412];
 
-outputWidth = 200;
-outputHeight = 200;
+TR = [560, 206];
+TL = [280, 206];
+BR = [560, 412];
+BL = [280, 412];
+
+outputWidth = 400;
+outputHeight = 300;
 
 output_image = projective_transformation(input_image,TL,TR,BL,BR,outputWidth,outputHeight);
 

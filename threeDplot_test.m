@@ -23,7 +23,7 @@ outputWidth = 200;
 outputHeight = 200;
 
 % insert image 
-input_image = imread('simple-room.png');
+input_image = imread('CV-Challenge-24-Datensatz/simple-room.png');
 
 % calculate each wall perspektive
 leftWall = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),outputWidth,outputHeight);
