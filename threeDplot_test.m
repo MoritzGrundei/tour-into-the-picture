@@ -5,7 +5,7 @@
 
 % assign 2D parameters, later calculated  
 roomDepth = 500;
-roomHeight = 800;
+roomHeight = 500;
 roomWidth = 500;
 
 

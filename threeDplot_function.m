@@ -1,4 +1,7 @@
 function threeDplot_function(input_image,Points, roomDepth, roomHeight, roomWidth)
+%% threeDplot_function: transform a 2D image into a 3D plot
+% input image, 12 points, room dimensions
+% to fix: asynchrone room dimensions 
 
 % calculate each wall perspektive
 leftWall = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),roomDepth,roomHeight);
