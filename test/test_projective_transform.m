@@ -1,7 +1,7 @@
 %% Script for testing projective_transformation
 
 % Load the input image
-input_image = imread('CV-Challenge-24-Datensatz/simple-room.png');
+input_image = imread('static/images/simple-room.png');
 
 % Display the input image
 figure;

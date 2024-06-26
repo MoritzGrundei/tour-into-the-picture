@@ -26,7 +26,7 @@ Points(11, :) = [0, 0];
 Points(12, :) = [848, 0];
 
 % insert image 
-input_image = imread('CV-Challenge-24-Datensatz/simple-room.png');
+input_image = imread('static/images/simple-room.png');
 
 % function that generates 3D plot with given dummy data
 threeDplot_function(input_image,Points, roomDepth, roomHeight, roomWidth); 
