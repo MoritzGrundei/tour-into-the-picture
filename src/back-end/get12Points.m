@@ -10,12 +10,10 @@ function [roomVertices] = get12Points(image, vanishingPoint, backgroundRectangle
     % roomVertices: 2D coordinates of the 12 vertices
     %     
 
-    img = image.CData;
-
     % extract size of the image: 
     % n = width, number of columns 
     % m = height, number of rows
-    [m, n, ~] = size(img);
+    [m, n, ~] = size(image);
 
     ir_coords = zeros(4, 2);
     ir_coords(1, :) = [backgroundRectangle(4, 2), backgroundRectangle(4, 1)];
