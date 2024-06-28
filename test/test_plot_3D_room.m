@@ -29,7 +29,7 @@ Points(12, :) = [848, 0];
 input_image = imread('static/images/simple-room.png');
 
 % function that generates 3D plot with given dummy data
-threeDplot_function(input_image,Points, roomDepth, roomHeight, roomWidth);
+plot_3D_room(input_image,Points, roomDepth, roomHeight, roomWidth);
 
 % add a foreground object
 fg_points = [

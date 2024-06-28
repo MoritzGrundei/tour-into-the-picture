@@ -1,5 +1,5 @@
-function threeDplot_function(input_image,Points, roomDepth, roomHeight, roomWidth)
-%% threeDplot_function: transform a 2D image into a 3D plot
+function plot_3D_room(input_image, Points, roomDepth, roomHeight, roomWidth)
+%% PLOT_3D:ROOM: transform a 2D image into a 3D plot
 % input image, 12 points, room dimensions
 % to fix: asynchrone room dimensions 
 

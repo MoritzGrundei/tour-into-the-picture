@@ -17,7 +17,7 @@ classdef Receiver < handle
             roomHeight = 500;
             roomWidth = 500;
 
-            threeDplot_function(imageSource.CData, [points(:, 2), points(:, 1)], roomDepth, roomHeight, roomWidth)
+            plot_3D_room(imageSource.CData, [points(:, 2), points(:, 1)], roomDepth, roomHeight, roomWidth)
         end
     end
 end
