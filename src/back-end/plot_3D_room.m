@@ -19,31 +19,36 @@ f = figure;
 leftX = [0 0; 0 0];
 leftY = [0 roomDepth; 0 roomDepth];
 leftZ = [roomHeight roomHeight; 0 0];
-surface(leftX, leftY, leftZ, 'FaceColor', 'texturemap', 'CData', leftWall);
+h = surface(leftX, leftY, leftZ, 'FaceColor', 'texturemap', 'CData', leftWall);
+set(h, 'EdgeColor', 'none');
 
 % Plot right wall
 rightX = [roomWidth roomWidth; roomWidth roomWidth];
 rightY = [roomDepth 0; roomDepth 0];
 rightZ = [roomHeight roomHeight; 0 0];
-surface(rightX, rightY, rightZ, 'FaceColor', 'texturemap', 'CData', rightWall);
+h = surface(rightX, rightY, rightZ, 'FaceColor', 'texturemap', 'CData', rightWall);
+set(h, 'EdgeColor', 'none');
 
 % Plot rear wall
 rearX = [0 roomWidth; 0 roomWidth];
 rearY = [roomDepth roomDepth; roomDepth roomDepth];
 rearZ = [roomHeight roomHeight; 0 0];
-surface(rearX, rearY, rearZ, 'FaceColor', 'texturemap', 'CData', rearWall);
+h = surface(rearX, rearY, rearZ, 'FaceColor', 'texturemap', 'CData', rearWall);
+set(h, 'EdgeColor', 'none');
 
 % Plot floor
 floorX = [0 roomWidth; 0 roomWidth];
 floorY = [roomDepth roomDepth; 0 0];
 floorZ = [0 0; 0 0];
-surface(floorX, floorY, floorZ, 'FaceColor', 'texturemap', 'CData', floorWall);
+h = surface(floorX, floorY, floorZ, 'FaceColor', 'texturemap', 'CData', floorWall);
+set(h, 'EdgeColor', 'none');
 
 % Plot ceiling
 ceilingX = [0 roomWidth; 0 roomWidth];
 ceilingY = [0 0; roomDepth roomDepth];
 ceilingZ = [roomHeight roomHeight; roomHeight roomHeight];
-surface(ceilingX, ceilingY, ceilingZ, 'FaceColor', 'texturemap', 'CData', ceilingWall);
+h = surface(ceilingX, ceilingY, ceilingZ, 'FaceColor', 'texturemap', 'CData', ceilingWall);
+set(h, 'EdgeColor', 'none');
 
 % Set up the view
 xlabel('X');

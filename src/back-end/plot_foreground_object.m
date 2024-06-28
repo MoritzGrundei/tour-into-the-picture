@@ -6,6 +6,7 @@ function plot_foreground_object(texture, x, y, z, width, height)
 corners_x = [x x+width; x x+width];
 corners_y = [y y; y y];
 corners_z = [z+height z+height; z z];
-surface(corners_x, corners_y, corners_z, 'FaceColor', 'texturemap', 'CData', texture);
+h = surface(corners_x, corners_y, corners_z, 'FaceColor', 'texturemap', 'CData', texture);
+set(h, 'EdgeColor', 'none');
 
 end
