@@ -11,9 +11,10 @@ classdef Receiver < handle
         function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons)
 
             % generate masks for foreground objects
-            foregroundMasks = zeros(size(imageSource.CData,1), size(imageSource.CData, 2), size(foregroundPolygons, 3));
-            for ii=1:size(foregroundPolygons, 3)
-                foregroundMasks(:,:,ii) = segmentation(imageSource.CData, foregroundPolygons(:,:,ii));
+            foregroundMasks = zeros(size(imageSource.CData,1), size(imageSource.CData, 2), length(foregroundPolygons));
+            foregroundFrames = zeros(2,4,length(foregroundPolygons));
+            for ii=1:length(foregroundPolygons)
+                [foregroundMasks(:,:,ii), foregroundFrames(:,:,ii)] = polygon_segmentation(imageSource.CData, foregroundPolygons{ii});
             end
 
             points = get12Points(imageSource.CData, vanishingPoint, backgroundPolygon);

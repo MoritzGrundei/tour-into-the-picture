@@ -5,7 +5,7 @@ classdef Create3DModelCommand < Command
         BackgroundPolygon double = []; % 4x2 matrix of corners of background polygon
         Receiver % object of command receiver
         Image % image source object
-        ForegroundPolygons % N foreground polygons. Shape: [4,2,N]
+        ForegroundPolygons % cell of foreground polygons
     end
 
     methods
@@ -13,9 +13,9 @@ classdef Create3DModelCommand < Command
             obj.VanishingPoint = vanishingPointROI.Position;
             obj.BackgroundPolygon = RectangleToPolygon(backgroundPolygonROI);
 
-            obj.ForegroundPolygons = [];
+            obj.ForegroundPolygons = {};
             for ii=1:length(foregroundPolygonROIs)
-                obj.ForegroundPolygons(:,:,ii) = RectangleToPolygon(foregroundPolygonROIs{ii});
+                obj.ForegroundPolygons{ii} = foregroundPolygonROIs{ii}.Position;
             end
                
             obj.Receiver = receiver;
