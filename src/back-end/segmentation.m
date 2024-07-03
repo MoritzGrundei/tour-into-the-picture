@@ -23,9 +23,10 @@ function mask = segmentation(image, boundingPolygon)
 
     % Extract subimage within bounding polygon
     subImage = image(minY:maxY, minX:maxX, :);
+    % grabCutSegmentation(subImage);
 
     subMask = kMeansSegmentation(subImage);
-    subMask = contourSegmentation(subImage, subMask, 500);
+    subMask = contourSegmentation(subImage, subMask, 300);
     subMask = applyDisk(subMask, 10);
     
     % Initialize a full-size mask of zeros
@@ -85,6 +86,37 @@ function mask = lazyCutSegmentation(image)
 
     % Perform Lazy Snapping
     mask = lazysnapping(image, L, foregroundInd, backgroundInd);
+    B = labeloverlay(image,mask);
+    imshow(B)
+
+end
+
+function mask = grabCutSegmentation(image)
+    % Perform Lazy Snapping Segmentation using superpixels and markers
+    L = superpixels(image, 200);
+    BW = boundarymask(L);
+    imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
+
+    % Define foreground and background markers based on the given logic
+    fg_markers = false(size(image, 1), size(image, 2));
+    bg_markers = false(size(image, 1), size(image, 2));
+    
+    % (1,1) pixel is background
+    bg_markers(1, 1) = true;
+
+    % Middle pixel is foreground
+    midY = round(size(image, 1) / 2);
+    midX = round(size(image, 2) / 2);
+    fg_markers(midY, midX) = true;
+
+    % Convert markers to linear indices
+    foregroundInd = find(fg_markers);
+    backgroundInd = find(bg_markers);
+
+    % Perform GraphCut
+    roiPoints = [1, 1; size(image, 2), 1; size(image, 2), size(image, 1); 1, size(image, 1)];
+    ROI = poly2mask(roiPoints(:,1),roiPoints(:,2),size(L,1),size(L,2));
+    mask = grabcut(image, L, ROI, "MaximumIterations", 20);
     B = labeloverlay(image,mask);
     imshow(B)
 
