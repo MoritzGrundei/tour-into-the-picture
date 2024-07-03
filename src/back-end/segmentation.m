@@ -27,9 +27,6 @@ function mask = segmentation(image, boundingPolygon)
     subMask = kMeansSegmentation(subImage);
     subMask = contourSegmentation(subImage, subMask, 500);
     subMask = applyDisk(subMask, 10);
-    B = labeloverlay(subImage,subMask);
-    figure(3)
-    imshow(B)
     
     % Initialize a full-size mask of zeros
     mask = zeros(size(image, 1), size(image, 2));
