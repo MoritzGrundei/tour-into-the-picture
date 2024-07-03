@@ -39,7 +39,7 @@ end
 function mask = kMeansSegmentation(image)
     % Create a binary mask for the subimage using k-means
     mask = imsegkmeans(image,2);
-    mask = mod(mask, 2);
+    mask = (mask == mask(floor(size(mask,1)/2), floor(size(mask,2)/2)));
 end
 
 function mask = applyDisk(mask, dist)
@@ -58,4 +58,34 @@ function mask = contourSegmentation(image, initMask, numIter)
 
     % Evolve the contour based on the grayscale image and the initial mask
     mask = activecontour(grayImage, initMask, numIter, 'edge');
+end
+
+
+function mask = lazyCutSegmentation(image)
+    % Perform Lazy Snapping Segmentation using superpixels and markers
+    [L, N] = superpixels(image, 200);
+    BW = boundarymask(L);
+    imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
+
+    % Define foreground and background markers based on the given logic
+    fg_markers = false(size(image, 1), size(image, 2));
+    bg_markers = false(size(image, 1), size(image, 2));
+    
+    % (1,1) pixel is background
+    bg_markers(1, 1) = true;
+
+    % Middle pixel is foreground
+    midY = round(size(image, 1) / 2);
+    midX = round(size(image, 2) / 2);
+    fg_markers(midY, midX) = true;
+
+    % Convert markers to linear indices
+    foregroundInd = find(fg_markers);
+    backgroundInd = find(bg_markers);
+
+    % Perform Lazy Snapping
+    mask = lazysnapping(image, L, foregroundInd, backgroundInd);
+    B = labeloverlay(image,mask);
+    imshow(B)
+
 end
