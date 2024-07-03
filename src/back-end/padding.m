@@ -2,15 +2,15 @@ function [padded_image,roomVectrices_with_padding] = padding(image,roomVectrices
     %input: image and coordinates of 12 Points
 
     %compute the size of the image
-    [m, n] = size(image);
+    [m, n, ~] = size(image);
 
     %initialize dif
     dif=0;
     %compute the biggest negative value
     for i=1:length(roomVectrices)
         for k=1:2
-            if(-roomVectrices{i}(k)>dif && roomVectrices{i}(k)<0)
-                dif = -roomVectrices{i}(k);
+            if(-roomVectrices(i,k)>dif && roomVectrices(i,k)<0)
+                dif = -roomVectrices(i,k);
             end
         end
     end
@@ -21,10 +21,9 @@ function [padded_image,roomVectrices_with_padding] = padding(image,roomVectrices
     padded_image((dif+1):(end-dif),(dif+1):(end-dif),:) = image;
 
     %compute updated values for the roomVectices of the padded image
-    roomVectrices_with_padding = cell(1,12);
-    
+    roomVectrices_with_padding = zeros(12, 2);    
     for i=1:length(roomVectrices)
-        roomVectrices_with_padding{i} = roomVectrices{i} + [dif,dif];
+        roomVectrices_with_padding(i,:) = roomVectrices(i,:) + [dif,dif];
     end
 
 end

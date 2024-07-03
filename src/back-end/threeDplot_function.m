@@ -1,6 +1,6 @@
 function threeDplot_function(input_image,Points, roomDepth, roomHeight, roomWidth)
 %% threeDplot_function: transform a 2D image into a 3D plot
-% input image, 12 points, room dimensions
+% input image, 12 points, room dimensionssni
 % to fix: asynchrone room dimensions 
 
 % calculate each wall perspektive
