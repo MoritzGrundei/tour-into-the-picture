@@ -1,52 +1,52 @@
-function plot_3D_room(input_image, Points, roomDepth, roomHeight, roomWidth)
+function plot_3D_room(leftWall, rightWall, rearWall, floorWall, ceilingWall)
 %% PLOT_3D:ROOM: transform a 2D image into a 3D plot
-% input image, 12 points, room dimensions
-% to fix: asynchrone room dimensions 
+% 2D images of the 5 room walls
 
-% calculate each wall perspektive
-leftWall = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),roomDepth,roomHeight);
-rightWall = projective_transformation(input_image,Points(8, :),Points(12, :),Points(2, :),Points(6, :),roomDepth,roomHeight);
-rearWall = projective_transformation(input_image,Points(7, :),Points(8, :),Points(1, :),Points(2, :),roomWidth,roomHeight);
-floorWall = projective_transformation(input_image,Points(1, :),Points(2, :),Points(3, :),Points(4, :),roomWidth,roomDepth);
-ceilingWall = projective_transformation(input_image,Points(9, :),Points(10, :),Points(7, :),Points(8, :),roomWidth,roomDepth);
+% extract room dimensions from input arguments
+roomWidth = size(rearWall, 2);
+roomHeight = size(rearWall, 1);
+leftDepth = size(leftWall, 2);
+rightDepth = size(rightWall, 2);
+floorDepth = size(floorWall, 1);
+ceilingDepth = size(ceilingWall, 1);
 
-
+average_depth = (leftDepth + rightDepth + ceilingDepth + floorDepth) / 4;
 
 % Create figure
 f = figure;
 
 % Plot left wall
 leftX = [0 0; 0 0];
-leftY = [0 roomDepth; 0 roomDepth];
-leftZ = [roomHeight roomHeight; 0 0];
+leftY = [roomHeight roomHeight; 0 0];
+leftZ = [leftDepth 0; leftDepth 0];
 h = surface(leftX, leftY, leftZ, 'FaceColor', 'texturemap', 'CData', leftWall);
 set(h, 'EdgeColor', 'none');
 
 % Plot right wall
 rightX = [roomWidth roomWidth; roomWidth roomWidth];
-rightY = [roomDepth 0; roomDepth 0];
-rightZ = [roomHeight roomHeight; 0 0];
+rightY = [roomHeight roomHeight; 0 0];
+rightZ = [0 rightDepth; 0 rightDepth];
 h = surface(rightX, rightY, rightZ, 'FaceColor', 'texturemap', 'CData', rightWall);
 set(h, 'EdgeColor', 'none');
 
 % Plot rear wall
 rearX = [0 roomWidth; 0 roomWidth];
-rearY = [roomDepth roomDepth; roomDepth roomDepth];
-rearZ = [roomHeight roomHeight; 0 0];
+rearY = [roomHeight roomHeight; 0 0];
+rearZ = [0 0; 0 0];
 h = surface(rearX, rearY, rearZ, 'FaceColor', 'texturemap', 'CData', rearWall);
 set(h, 'EdgeColor', 'none');
 
 % Plot floor
 floorX = [0 roomWidth; 0 roomWidth];
-floorY = [roomDepth roomDepth; 0 0];
-floorZ = [0 0; 0 0];
+floorY = [0 0; 0 0];
+floorZ = [0 0; floorDepth floorDepth];
 h = surface(floorX, floorY, floorZ, 'FaceColor', 'texturemap', 'CData', floorWall);
 set(h, 'EdgeColor', 'none');
 
 % Plot ceiling
 ceilingX = [0 roomWidth; 0 roomWidth];
-ceilingY = [0 0; roomDepth roomDepth];
-ceilingZ = [roomHeight roomHeight; roomHeight roomHeight];
+ceilingY = [roomHeight roomHeight; roomHeight roomHeight];
+ceilingZ = [ceilingDepth ceilingDepth; 0 0];
 h = surface(ceilingX, ceilingY, ceilingZ, 'FaceColor', 'texturemap', 'CData', ceilingWall);
 set(h, 'EdgeColor', 'none');
 
@@ -58,7 +58,7 @@ title('3D Room Visualization');
 axis vis3d;
 
 % turn off axis 
-axis off;
+%axis off;
 
 % Enable rotation
 rotate3d on;
@@ -69,7 +69,7 @@ cameratoolbar(f);
 
 ax = gca;
 % Set camera target at slightly in front of center of rear wall
-ax.CameraTarget = [roomWidth / 2, roomDepth * 0.8, roomHeight / 2];
+ax.CameraTarget = [roomWidth / 2, average_depth * 0.8, roomHeight / 2];
 % Set camera position at center of "entrance"
 campos([roomWidth / 2, 0, roomHeight / 2]);
 % Set field of view
