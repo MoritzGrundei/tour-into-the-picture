@@ -8,8 +8,14 @@ classdef Receiver < handle
         function obj = Receiver()
         end
 
-        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint)
-            % where does the depth come from? making arbitrary assumption
+        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons)
+
+            % generate masks for foreground objects
+            foregroundMasks = zeros(size(imageSource.CData,1), size(imageSource.CData, 2), length(foregroundPolygons));
+            foregroundFrames = zeros(2,4,length(foregroundPolygons));
+            for ii=1:length(foregroundPolygons)
+                [foregroundMasks(:,:,ii), foregroundFrames(:,:,ii)] = polygon_segmentation(imageSource.CData, foregroundPolygons{ii});
+            end
 
             points = get12Points(imageSource.CData, vanishingPoint, backgroundPolygon);
 
