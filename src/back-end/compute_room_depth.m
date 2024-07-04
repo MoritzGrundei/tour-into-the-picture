@@ -1,4 +1,4 @@
-function [depth_15, depth_24, depth_711, depth_810] = compute_room_depth(roomVertices, vanishingPoint, est_roomDepth)
+function [ceilingDepth, floorDepth, rightWallDepth, leftWallDepth] = compute_room_depth(roomVertices, vanishingPoint, est_roomDepth)
     % initializations
     threeD_points = [roomVertices, zeros(12,1)];
     vp_coords = [vanishingPoint(2), vanishingPoint(1)];
@@ -27,9 +27,9 @@ function [depth_15, depth_24, depth_711, depth_810] = compute_room_depth(roomVer
     % compute depth using relations calculated above
     scaled_depths = est_roomDepth.*threeD_points(:,3);
 
-    depth_15 = scaled_depths(1);
-    depth_24 = scaled_depths(2);
-    depth_711 = scaled_depths(7);
-    depth_810 = scaled_depths(8);
+    floorDepth = ceil(scaled_depths(3));
+    ceilingDepth = ceil(scaled_depths(9));
+    rightWallDepth = ceil(scaled_depths(6));
+    leftWallDepth = ceil(scaled_depths(5));
 
 end

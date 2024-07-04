@@ -22,20 +22,12 @@ classdef Receiver < handle
             % testpoints = test(vanishingPoint,points')';
 
             % get room depths 
-            [depth_15, depth_24, depth_711, depth_810] = compute_room_depth(points, vanishingPoint, roomDepth);
+            [ceilingDepth, floorDepth, rightDepth, leftDepth] = compute_room_depth(points, vanishingPoint, roomDepth);
             
             % [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundPolygon,imageSource.CData);
-           
-            % mocked room dimensions of sagrada familia
-            floorDepth = 916;
-            leftDepth = 1321;
-            rightDepth = 1318;
-            ceilingDepth = 879;
-
 
             % cut foreground objects (+retouching)
             
-
             % redefine 12 points for perspective
             Points = [points(:, 2), points(:, 1)];
 
