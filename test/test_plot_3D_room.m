@@ -56,6 +56,23 @@ fg_points = [
 inpaintedImage = retouch_background(input_image, fg_points);
 
 
+fg_points = [
+
+    495,460; %TL
+    350,460; %TR
+    300,590; %BR
+    540,590; %BL
+    ];
+
+fg_points = [
+
+    495,460; %TL
+    800,460; %TR
+    800,400; %BR
+    540,400; %BL
+    ];
+
+wallnumber = foreground_wall(Points, fg_points)
 % function that generates 3D plot with given dummy data
 % !!! needs to be updated to current input structure
 %plot_3D_room(inpaintedImage,Points, roomDepth, roomHeight, roomWidth);
