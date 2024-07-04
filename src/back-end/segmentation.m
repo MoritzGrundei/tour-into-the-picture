@@ -28,6 +28,9 @@ function mask = segmentation(image, boundingPolygon)
     subMask = kMeansSegmentation(subImage);
     subMask = contourSegmentation(subImage, subMask, 300);
     subMask = applyDisk(subMask, 10);
+
+    B = labeloverlay(subImage,subMask);
+    imshow(B)
     
     % Initialize a full-size mask of zeros
     mask = zeros(size(image, 1), size(image, 2));
@@ -36,6 +39,33 @@ function mask = segmentation(image, boundingPolygon)
     mask(minY:maxY, minX:maxX) = subMask;
 
 end
+
+function mask = kMeansSegmentationSpatial(image)
+    % Create a binary mask for the subimage using k-means
+    wavelength = 2.^(0:5) * 3;
+    orientation = 0:45:135;
+    g = gabor(wavelength,orientation);
+    imageGray = im2gray(im2single(image));
+    gabormag = imgaborfilt(imageGray,g);
+    montage(gabormag,"Size",[4 6])
+
+    for i = 1:length(g)
+        sigma = 0.5*g(i).Wavelength;
+        gabormag(:,:,i) = imgaussfilt(gabormag(:,:,i),3*sigma); 
+    end
+    montage(gabormag,"Size",[4 6])
+
+    nrows = size(image,1);
+    ncols = size(image,2);
+    [X,Y] = meshgrid(1:ncols,1:nrows);
+
+    featureSet = cat(3,imageGray,gabormag,X,Y);
+
+    mask = imsegkmeans(featureSet,2,"NormalizeInput",true);
+
+    mask = (mask == mask(floor(size(mask,1)/2), floor(size(mask,2)/2)));
+end
+
 
 function mask = kMeansSegmentation(image)
     % Create a binary mask for the subimage using k-means

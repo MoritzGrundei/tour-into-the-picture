@@ -21,7 +21,7 @@ function [mask, frame] = polygon_segmentation(image, boundingPolygon)
     L = superpixels(image, 200);
 
 
-    PADDING = 10;
+    PADDING = 0; % padding around polygon for rectangle
     minX = ceil(max(min(boundingPolygon(:,1)) - PADDING, 1));
     maxX = floor(min(max(boundingPolygon(:,1)) + PADDING, size(image, 2)));
     minY = ceil(max(min(boundingPolygon(:,2)) - PADDING, 1));
@@ -47,13 +47,16 @@ end
 
 function mask = grabCutSegmentation(image, initMask)
     % Perform Lazy Snapping Segmentation using superpixels and markers
+    image = rgb2gray(image);
+    image = histeq(image);
+    imshow(image);
     L = superpixels(image, 300);
-    % BW = boundarymask(L);
-    % imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
+    BW = boundarymask(L);
+    imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
 
     % Perform GraphCut
-    mask = grabcut(im2gray(image), L, initMask, "MaximumIterations",25);
-    %B = labeloverlay(image,mask);
-    %imshow(B)
+    mask = grabcut(im2gray(image), L, initMask);
+    B = labeloverlay(image,mask);
+    imshow(B)
 
 end
