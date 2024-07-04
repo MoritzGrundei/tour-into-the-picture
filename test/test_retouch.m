@@ -3,14 +3,15 @@ img = imread('static/images/simple-room.png');
 
 % Define the polygon vertices
 foregroundPolygon = [
-    300,420; %TR
-    550,420; %TL
-    600,650; %BL
-    250,650; %BR
+    350,460; %TR
+    495,460; %TL
+    540,590; %BL
+    300,590; %BR
     ];
 
-output = retouch_background(img, foregroundPolygon);
 
+output = retouch_background(img, foregroundPolygon, 'stretch', 1.1);
+% output = retouch_background(img, foregroundPolygon);
 
 % Display the original and the filled image
 figure;
