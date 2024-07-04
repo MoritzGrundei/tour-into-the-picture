@@ -10,7 +10,7 @@ foregroundPolygon = [
     ];
 
 
-output = retouch_background(img, foregroundPolygon, 'stretch', 1.1);
+output = retouch_background(img, foregroundPolygon, 'stretch', 1.2);
 % output = retouch_background(img, foregroundPolygon);
 
 % Display the original and the filled image

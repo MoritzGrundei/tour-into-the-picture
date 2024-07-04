@@ -58,7 +58,7 @@ title('3D Room Visualization');
 axis vis3d;
 
 % turn off axis 
-%axis off;
+axis off;
 
 % Enable rotation
 rotate3d on;
@@ -69,9 +69,10 @@ cameratoolbar(f);
 
 ax = gca;
 % Set camera target at slightly in front of center of rear wall
-ax.CameraTarget = [roomWidth / 2, average_depth * 0.8, roomHeight / 2];
+ax.CameraTarget = [roomWidth / 2, roomHeight / 2, average_depth * 0.1];
 % Set camera position at center of "entrance"
-campos([roomWidth / 2, 0, roomHeight / 2]);
+campos([roomWidth / 2, roomHeight / 2, average_depth * 1.2]);
+camup([0, 1, 0])
 % Set field of view
 ax.CameraViewAngle = 90;
 % Enable perspective view

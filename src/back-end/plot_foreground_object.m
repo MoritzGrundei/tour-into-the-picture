@@ -7,7 +7,7 @@ function plot_foreground_object(Points, polygon, rectangle, imageSource, tform, 
 wall_number = get_wall_number(Points, rectangle);
 
 % function to get 3D coordinates of foreground
-[TL, TR, BR, BL] = foreground_coordinates(tform{wall_number}, rectangle, wall_number, walls); 
+[TL, TR, BR, BL] = foreground_coordinates(tform{wall_number}, rectangle, wall_number, walls) 
 
 X = [TL(1), TR(1); BL(1), BR(1)];
 Y = [TL(2), TR(2); BL(2), BR(2)];
