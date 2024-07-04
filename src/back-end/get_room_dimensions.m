@@ -1,5 +1,5 @@
-function [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundRectangle,input_image)
-    [~,image_width, ~] = size(input_image);
+function [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundRectangle, input_image)
+    [~, image_width, ~] = size(input_image);
     ir_coords = zeros(4, 2);
     ir_coords(1, :) = [backgroundRectangle(4, 2), backgroundRectangle(4, 1)];
     ir_coords(2, :) = [backgroundRectangle(3, 2), backgroundRectangle(3, 1)];
