@@ -3,10 +3,10 @@
 % implemented and later on received by gen12Points function
 
 
-% assign 2D parameters, later calculated  
+% assign 2D parameters, later calculated
 roomDepth = 500;
-roomHeight = 300;
-roomWidth = 500;
+roomHeight = 500;
+roomWidth = 100;
 
 
 % manually assign Points 
@@ -28,9 +28,6 @@ Points(12, :) = [848, 0];
 % insert image 
 input_image = imread('static/images/simple-room.png');
 
-% function that generates 3D plot with given dummy data
-plot_3D_room(input_image,Points, roomDepth, roomHeight, roomWidth);
-
 % add a foreground object
 fg_points = [
     350,460; %TR
@@ -42,5 +39,41 @@ fg_points = [
 % transformation usually not necessary
 foreground_object = projective_transformation(input_image, fg_points(1, :), fg_points(2, :), fg_points(3, :), fg_points(4, :), 150, 100);
 
+fg_points = [
+    350,460; %TR
+    495,460; %TL
+    540,590; %BL
+    300,590; %BR
+    ];
+
+fg_points = [
+    300,420; %TR
+    550,420; %TL
+    600,650; %BL
+    250,650; %BR
+    ];
+
+inpaintedImage = retouch_background(input_image, fg_points);
+
+
+% function that generates 3D plot with given dummy data
+% !!! needs to be updated to current input structure
+%plot_3D_room(inpaintedImage,Points, roomDepth, roomHeight, roomWidth);
+
+
+% Display the original image and the inpainted image
+figure;
+subplot(1, 3, 1);
+imshow(input_image);
+title('Original Image');
+
+subplot(1, 3, 2);
+imshow(foreground_mask);
+title('Foreground Mask');
+
+subplot(1, 3, 3);
+imshow(inpaintedImage);
+title('Inpainted Image');
+
 % add to plot
-plot_foreground_object(foreground_object, 150, 50, 0, 200, 100);
+%plot_foreground_object(foreground_object, 150, 50, 0, 200, 100);
