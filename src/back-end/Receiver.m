@@ -11,7 +11,7 @@ classdef Receiver < handle
         function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint)
             % where does the depth come from? making arbitrary assumption
 
-            points = get12Points(imageSource.CData, vanishingPoint, backgroundPolygon);
+            points = get12Points(imageSource.CData, vanishingPoint, backgroundPolygon)
             
 
             % mocked room dimensions of sagrada familia
@@ -30,7 +30,7 @@ classdef Receiver < handle
 
             % calculate each wall perspective
             % init array 
-            tform = cell(5);
+            tform = cell(5); 
             walls = cell(5);
             % floor cell{1}
             % left wall  cell{2}
