@@ -11,10 +11,16 @@ rightDepth = size(walls{3}, 2);
 floorDepth = size(walls{1}, 1);
 ceilingDepth = size(walls{4}, 1);
 
+TL_2D = zeros(2);
+TR_2D = zeros(2);
+BR_2D = zeros(2);
+BL_2D = zeros(2);
+
+
 if wall_number == 1
     % floor
-    BR_2D = transformPointsForward(tform{1}, rectangle(3,1), rectangle(3,2));
-    BL_2D = transformPointsForward(tform{1}, rectangle(4,1), rectangle(4,2));
+    [BR_2D(1), BR_2D(2)] = transformPointsForward(tform(1), rectangle(3,1), rectangle(3,2));
+    [BL_2D(1), BL_2D(2)] = transformPointsForward(tform(1), rectangle(4,1), rectangle(4,2));
     rectangle_height = (rectangle(4,2)-rectangle(1,2))/(rectangle(2,1)-rectangle(1,1))*(BR_2D(1)-BL_2D(1)); 
     z_pos = BL_2D(2);
     
@@ -25,8 +31,8 @@ if wall_number == 1
 
 elseif wall_number == 2
     % left wall
-    TL_2D = transformPointsForward(tform{2}, rectangle(1,1), rectangle(1,2));
-    BL_2D = transformPointsForward(tform{2}, rectangle(4,1), rectangle(4,2));
+    [TL_2D(1), TL_2D(2)] = transformPointsForward(tform(2), rectangle(1,1), rectangle(1,2));
+    [BL_2D(1), BL_2D(2)] = transformPointsForward(tform(2), rectangle(4,1), rectangle(4,2));
     rectangle_width = (rectangle(2,1)-rectangle(1,1))/(rectangle(4,2)-rectangle(1,2))*(TL_2D(2)-BL_2D(2));
     z_pos = leftDepth - TL_2D(1);
 
@@ -37,8 +43,8 @@ elseif wall_number == 2
 
 elseif wall_number == 3 
     % right wall
-    TR_2D = transformPointsForward(tform{3}, rectangle(2,1), rectangle{2,2});
-    BR_2D = transformPointsForward(tform{3}, rectangle(3,1), rectangle(3,2));
+    [TR_2D(1), TR_2D(2)] = transformPointsForward(tform(3), rectangle(2,1), rectangle{2,2});
+    [BR_2D(1), BR_2D(2)] = transformPointsForward(tform(3), rectangle(3,1), rectangle(3,2));
     rectangle_width = (rectangle(2,1)-rectangle(1,1))/(rectangle(4,2)-rectangle(1,2))*(TR_2D(2)-BR_2D(2));
     z_pos = TR_2D(1);
 
@@ -49,8 +55,8 @@ elseif wall_number == 3
 
 elseif wall_number == 4
     % ceiling
-    TL_2D = transformPointsForward(tform{4}, rectangle(1,1), rectangle(1,2));
-    TR_2D = transformPointsForward(tform{4}, rectangle(2,1), rectangle(2,2));
+    [TL_2D(1), TL_2D(2)] = transformPointsForward(tform(4), rectangle(1,1), rectangle(1,2));
+    [TR_2D(1), TR_2D(2)] = transformPointsForward(tform(4), rectangle(2,1), rectangle(2,2));
     rectangle_height = (rectangle(1,2)-rectangle(4,2))/(rectangle(1,2)-rectangle(2,2))*(x_TR-x_TL);
     z_pos = ceilingDepth - TL_2D(2);
 

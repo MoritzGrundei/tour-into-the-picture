@@ -43,8 +43,10 @@ classdef Receiver < handle
             plot_3D_room(walls);
 
             % add forreground objects
-            plot_foreground_object(Points, polygon, rectangle, imageSource.CData, walls, tform); 
+            %plot_foreground_object(Points, polygon, rectangle, imageSource.CData, walls, tform); 
             
+            plot_foreground_object(Points, 1, rectangle, 1, tform, walls, foreground_texture)
+
         end
     end
 end

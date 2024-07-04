@@ -72,25 +72,69 @@ fg_points = [
     540,400; %BL
     ];
 
-wallnumber = foreground_wall(Points, fg_points)
+%wallnumber = get_wall_number(Points, fg_points);
 % function that generates 3D plot with given dummy data
-% !!! needs to be updated to current input structure
-%plot_3D_room(inpaintedImage,Points, roomDepth, roomHeight, roomWidth);
 
 
-% Display the original image and the inpainted image
-figure;
-subplot(1, 3, 1);
-imshow(input_image);
-title('Original Image');
 
-subplot(1, 3, 2);
-imshow(foreground_mask);
-title('Foreground Mask');
+            roomDepth = 500;
+            roomHeight = 400;
+            roomWidth = 500;
 
-subplot(1, 3, 3);
-imshow(inpaintedImage);
-title('Inpainted Image');
+            % cut foreground objects (+retouching)
+            
+
+            % redefine 12 points for perspective
+
+            % calculate each wall perspective
+            % init array 
+            tform = cell(5);
+            walls = cell(5);
+            % floor cell{1}
+            % left wall  cell{2}
+            % right wall cell{3}
+            % ceiling cell{4}
+            % rear wall cell{5}
+
+            [walls{1}, tform{1}] = projective_transformation(input_image,Points(1, :),Points(2, :),Points(3, :),Points(4, :),roomWidth,roomDepth);
+            [walls{2}, tform{2}] = projective_transformation(input_image,Points(11, :),Points(7, :),Points(5, :),Points(1, :),roomDepth,roomHeight);
+            [walls{3}, tform{3}] = projective_transformation(input_image,Points(8, :),Points(12, :),Points(2, :),Points(6, :),roomDepth,roomHeight);
+            [walls{4}, tform{4}] = projective_transformation(input_image,Points(9, :),Points(10, :),Points(7, :),Points(8, :),roomWidth,roomDepth);
+            [walls{5}, tform{5}] = projective_transformation(input_image,Points(7, :),Points(8, :),Points(1, :),Points(2, :),roomWidth,roomHeight);
+            
+            % construct room
+            plot_3D_room(walls);
+            
+
+% rectangle for couch
+rectangle = [
+    350,460; %TL
+    495,460; %TR
+    540,590; %BR
+    300,590; %BL
+    ];
+
+rectangle = [
+    150,300; %TL
+    300,300; %TR
+    300,400; %BR
+    150,400; %BL
+    ];
+
+
+polygon = [
+    350,460; %TL
+    495,460; %TR
+    540,590; %BR
+    300,590; %BL
+    250,500; %ML
+    ];
+
+% add foreground objects
+plot_foreground_object(Points, 1, rectangle, 1, tform, walls, foreground_object)
+
+
 
 % add to plot
+
 %plot_foreground_object(foreground_object, 150, 50, 0, 200, 100);

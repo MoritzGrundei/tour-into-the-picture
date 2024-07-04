@@ -1,4 +1,4 @@
-function rect_image = projective_transformation(input_image, TL, TR, BL, BR, outputWidth, outputHeight)
+function [rect_image,tform] = projective_transformation(input_image, TL, TR, BL, BR, outputWidth, outputHeight)
 % PROJECTIVE_TRANSFORMATION  Transform a trapezoidal section of the
 % input_image into a rectangular image.
 %
