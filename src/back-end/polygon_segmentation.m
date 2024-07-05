@@ -49,14 +49,14 @@ function mask = grabCutSegmentation(image, initMask)
     % Perform Lazy Snapping Segmentation using superpixels and markers
     image = rgb2gray(image);
     image = histeq(image);
-    imshow(image);
+    %imshow(image);
     L = superpixels(image, 300);
-    BW = boundarymask(L);
-    imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
+    %BW = boundarymask(L);
+    %imshow(imoverlay(image,BW,'cyan'),'InitialMagnification',67)
 
     % Perform GraphCut
     mask = grabcut(im2gray(image), L, initMask);
-    B = labeloverlay(image,mask);
-    imshow(B)
+    %B = labeloverlay(image,mask);
+    %imshow(B)
 
 end
