@@ -82,7 +82,4 @@ ax.Projection = 'perspective';
 % Turn off axis scaling
 axis equal;
 
-% Show the plot
-hold off;
-
 end

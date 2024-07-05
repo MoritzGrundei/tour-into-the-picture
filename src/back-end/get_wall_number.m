@@ -42,7 +42,7 @@ end
 
 function result = is_right_of_edge(edgeStart, edgeEnd, point)
 %IS_RIGHT_OF_EDGE checks if point is to the right of a directed edge with
-% a cross product method
+% cross product method
 % output: boolean
 edgeVector = edgeEnd - edgeStart;
 pointVector = point - edgeStart;
