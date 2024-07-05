@@ -16,13 +16,12 @@ classdef Receiver < handle
 
             % estimate width, height of the wall at the back as well as the
             % depth of the room
-            [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundPolygon, imageSource.CData);
+            [ceilingDepth, floorDepth, rightDepth, leftDepth, roomHeight, roomWidth] = get_room_dimensions(imageSource.CData, points,vanishingPoint);
 
             % threeD_points = get_threeD_points(points,vanishingPoint);
-            % testpoints = test(vanishingPoint,points')';
 
             % get room depths 
-            [ceilingDepth, floorDepth, rightDepth, leftDepth] = compute_room_depth(points, vanishingPoint, roomDepth);
+            %[ceilingDepth, floorDepth, rightDepth, leftDepth] = compute_room_depth(points, vanishingPoint, roomDepth);
             
             % [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundPolygon,imageSource.CData);
 
