@@ -18,13 +18,6 @@ classdef Receiver < handle
             % depth of the room
             [ceilingDepth, floorDepth, rightDepth, leftDepth, roomHeight, roomWidth] = get_room_dimensions(imageSource.CData, points,vanishingPoint);
 
-            % threeD_points = get_threeD_points(points,vanishingPoint);
-
-            % get room depths 
-            %[ceilingDepth, floorDepth, rightDepth, leftDepth] = compute_room_depth(points, vanishingPoint, roomDepth);
-            
-            % [roomDepth, roomHeight, roomWidth] = get_room_dimensions(backgroundPolygon,imageSource.CData);
-
             % cut foreground objects (+retouching)
             
             % redefine 12 points for perspective
