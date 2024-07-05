@@ -32,6 +32,8 @@ classdef Receiver < handle
             ceilingDepth = 400;
             roomHeight = 400;
             roomWidth = 500;
+            
+            % to fix: get room dimensions from function
 
             % generate masks for foreground objects
             foregroundMasks = zeros(size(background,1), size(background, 2), length(foregroundPolygons));

@@ -1,5 +1,8 @@
 function texture = get_foreground_texture(whole_image, mask, frame)
-%GET_FOREGROUND_TEXTURE returns the texture of a foreground image
+%GET_FOREGROUND_TEXTURE returns the texture of a foreground image, using
+% the mask on the whole_image in the frame size
+% input: 2D whole_image, mask and frame 
+% outpur: 2D foreground texture 
 
 % Image dimensions
 width = frame(2,1) - frame(1,1) + 1;
