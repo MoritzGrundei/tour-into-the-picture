@@ -12,7 +12,7 @@ classdef Receiver < handle
 
             % generate masks for foreground objects
             foregroundMasks = zeros(size(imageSource.CData,1), size(imageSource.CData, 2), length(foregroundPolygons));
-            foregroundFrames = zeros(2,4,length(foregroundPolygons));
+            foregroundFrames = zeros(4,2,length(foregroundPolygons));
             for ii=1:length(foregroundPolygons)
                 [foregroundMasks(:,:,ii), foregroundFrames(:,:,ii)] = polygon_segmentation(imageSource.CData, foregroundPolygons{ii});
             end
