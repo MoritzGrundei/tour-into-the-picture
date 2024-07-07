@@ -25,7 +25,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
       - handle unknown images (test images)
 
 <h2>How to use? - Quick Start</h2>
-
+  Matlab Toolboxen
 
 <h2>Workflow</h2>
 
@@ -57,14 +57,15 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
   - Compute the euclidean distances between the 12 points and the vanishing point
   - Define the z-coordinate of point 4 as one in order to have a referenz in the z-dimension
   - Compute the relative z-coordinates of points 2,5,6 and 10 with the distance ratios and referens of point 4
+    $$\displaystyle z_6 = \frac{\left \lVert v_{vp}-v_4 \right \rVert_2}{\left \lVert v_{vp}-v_6 \right \rVert_2} *z_4$$
   - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
 
 
 <h3>Foreground Positioning</h3>  
   
-  - The foreground rectangular frame defines the position in the 3D room
-     1. Calculate the wall the foreground object is attached to by checking the cross product of the foreground points with the four vertices of each trapezoid
-     2. Use the projective transformation function to calculate the 3D foreground rectangle points attached to the corresponding wall from 2D coordinates
+   - The rectangular frame of the foreground object defines its position in the 3D room
+     1. Calculate the wall where the foreground object is attached to. An object is assigned to a wall if the cross products of its corners with the vertices of a trapezoid are positive
+     2. Use the projective transformation function to calculate the 3D foreground rectangle points from the 2D coordinates
 
 <h3>Foreground Plotting</h3>
 
