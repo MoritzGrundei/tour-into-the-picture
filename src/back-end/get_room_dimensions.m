@@ -3,7 +3,7 @@ function [ceilingDepth, floorDepth, rightWallDepth, leftWallDepth, roomHeight, r
     [image_height, image_width, ~] = size(input_image);
     
     % set scaling factor to improve quality of reconstructed 3D image
-    scale_factor = 10;
+    scale_factor = 7;
 
     % use back wall to estimate the width and height of the room by
     % assuming that the room is a cuboid
