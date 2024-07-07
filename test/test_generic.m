@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+% Function to check if point is to the left of a directed edge (cross product method)
+    function result = is_right_of_edge(edgeStart, edgeEnd, point)
+        edgeVector = edgeEnd - edgeStart;
+        pointVector = point - edgeStart;
+        crossProd = edgeVector(1) * pointVector(2) - edgeVector(2) * pointVector(1);
+        result = crossProd < 0
+    end
+
+
+
+
+    is_right_of_edge([0,0], [10,10], [4.9, 5])
+=======
 % Create a 10x10 grid for the surface
 [X, Y] = meshgrid(1:10, 1:10);
 Z = zeros(size(X));  % Flat surface at Z = 0
@@ -40,3 +54,4 @@ cameratoolbar(f);
 % Ensure the plot is interactive
 grid on;  % Show grid for better reference
 view(3);  % Set the default 3D view
+>>>>>>> main
