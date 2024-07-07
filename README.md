@@ -84,4 +84,3 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
   - Define the camera perspective and toolbar to create 3D view 
   - Create 3D room tour by continuously updating the camera position, include the foreground position in the tour
 
-<h2>Challenges</h2>o
