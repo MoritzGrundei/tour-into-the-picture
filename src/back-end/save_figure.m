@@ -12,13 +12,13 @@ pathComponents = split(mfolder, filesep);
 mainFolder = fullfile(pathComponents{1:length(pathComponents)-2});
 
 % Create 'output' directory if it doesn't exist
-if ~exist([mainFolder, '/output'], 'dir')
-    mkdir([mainFolder, '/output']);
+if ~exist(['/', mainFolder, '/output'], 'dir')
+    mkdir(['/', mainFolder, '/output']);
 end
 
 % Check for existing files and update the filename accordingly
 counter = 1;
-saveFilename = [mainFolder, '/output/', imageName, '_3Dplot_', sprintf('%03d', counter), '.fig'];
+saveFilename = ['/', mainFolder, '/output/', imageName, '_3Dplot_', sprintf('%03d', counter), '.fig'];
 while exist(saveFilename, 'file')
     % Update the filename with the counter
     saveFilename = [mainFolder, '/output/', imageName, '_3Dplot_', sprintf('%03d', counter), '.fig'];
