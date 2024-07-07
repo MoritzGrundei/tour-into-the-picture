@@ -25,7 +25,28 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
       - handle unknown images (test images)
 
 <h2>How to use? - Quick Start</h2>
-  Matlab Toolboxen
+  
+  - Software requirements:
+      - MATLAB R2024a
+      - MATLAB Toolbox:
+          - Computer Vision Toolbox
+          - Image Processing Toolbox
+          - Statistics and Machine Learning Toolbox
+  - Step-by-Step manual:
+    1. clone repository onto your local machine
+    2. open project on MATLAB
+    3. add src folder and its subfolders to path and run main.m
+    4. select image of the 2D room that should be reconstructed by clicking on "Upload new image"
+       - if the selection was successful, the light of "Upload a image" will turn to green
+    5. select the vanising point of the image by clicking on the "Select vanishing point" button and clicking onto the image where the vanishing point should be
+       - the light next to "select the vanishing point" will turn green in case the selection was successful
+    6. select the background rectangle by pressing on the "Select Background Rectangle" button and manually drawing the rectangle onto the image
+       - the light for "Select the background rectangle" will turn green afterwards
+    7. the radial lines through the vanishing points and the vertices of the inner rectangle are displayed, the vanishing point and the inner rectangle can still be adjusted
+    8. (optional) if there are foreground objects in the image, one can press "Optional: Select Foreground Rectangle" to draw a polygon around the object or multiple polygons around objects
+    9. Once the configuration is done, press "Submit" to start the reconstruction
+    10. one can always reset the configuration by pressing "Reset"
+
 
 <h2>Workflow</h2>
 
