@@ -8,7 +8,10 @@ classdef Receiver < handle
         function obj = Receiver()
         end
 
-        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons, useSeg)
+        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons, useSeg, imageFileName)
+            % TODO: remove
+            disp(imageFileName);
+            
             % define variables for easier handling
             numForegroundObjects = length(foregroundPolygons);
             background = imageSource.CData;

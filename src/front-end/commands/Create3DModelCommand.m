@@ -7,10 +7,11 @@ classdef Create3DModelCommand < Command
         Image % image source object
         ForegroundPolygons % cell of foreground polygons
         UseSeg
+        ImageFileName
     end
 
     methods
-        function obj = Create3DModelCommand(vanishingPointROI, backgroundPolygonROI, receiver, image, foregroundPolygonROIs, useSeg)
+        function obj = Create3DModelCommand(vanishingPointROI, backgroundPolygonROI, receiver, image, foregroundPolygonROIs, useSeg, imageFileName)
             obj.VanishingPoint = vanishingPointROI.Position;
             obj.BackgroundPolygon = RectangleToPolygon(backgroundPolygonROI);
             
@@ -21,10 +22,11 @@ classdef Create3DModelCommand < Command
             obj.UseSeg = useSeg;
             obj.Receiver = receiver;
             obj.Image = image;
+            obj.ImageFileName = imageFileName;
         end
 
         function execute(obj)
-            obj.Receiver.plot3dRoom(obj.Image, obj.BackgroundPolygon, obj.VanishingPoint, obj.ForegroundPolygons, obj.UseSeg)
+            obj.Receiver.plot3dRoom(obj.Image, obj.BackgroundPolygon, obj.VanishingPoint, obj.ForegroundPolygons, obj.UseSeg, obj.ImageFileName)
         end
     end
 end
