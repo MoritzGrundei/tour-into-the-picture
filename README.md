@@ -62,9 +62,9 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 
 <h3>Foreground Positioning</h3>  
   
-  - The foreground rectangular frame defines the position in the 3D room
-     1. Calculate the wall the foreground object is attached to by checking the cross product of the foreground points with the four vertices of each trapezoid
-     2. Use the projective transformation function to calculate the 3D foreground rectangle points attached to the corresponding wall from 2D coordinates
+   - The rectangular frame of the foreground object defines its position in the 3D room
+     1. Calculate the wall where the foreground object is attached to. An object is assigned to a wall if the cross products of its corners with the vertices of a trapezoid are positive
+     2. Use the projective transformation function to calculate the 3D foreground rectangle points from the 2D coordinates
 
 <h3>Foreground Plotting</h3>
 
