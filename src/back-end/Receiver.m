@@ -8,7 +8,7 @@ classdef Receiver < handle
         function obj = Receiver()
         end
 
-        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons, useSeg)
+        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons, useSeg, imageFileName)
             % define variables for easier handling
             numForegroundObjects = length(foregroundPolygons);
             background = imageSource.CData;
@@ -77,6 +77,21 @@ classdef Receiver < handle
                 foregroundCoordinates{i}(3, :) = BR;
                 foregroundCoordinates{i}(4, :) = BL;
             end
+
+            % Extract image name from file path
+            [~, imageName, ~] = fileparts(imageFileName);
+
+            % Check for existing files and update the filename accordingly
+            counter = 1;
+            saveFilename = ['output/', imageName, '_3Dplot_', sprintf('%03d', counter), '.fig'];
+            while exist(saveFilename, 'file')
+                % Update the filename with the counter
+                saveFilename = ['output/', imageName, '_3Dplot_', sprintf('%03d', counter), '.fig'];
+                counter = counter + 1;
+            end
+
+            % Save the figure to a .fig file
+            savefig(hfig, saveFilename);
             
             % have the camera do a roomtour, including foreground objects
             pan_camera(hfig, roomWidth, roomHeight, floorDepth, foregroundCoordinates);

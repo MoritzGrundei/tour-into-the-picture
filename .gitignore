@@ -31,3 +31,6 @@ codegen/
 octave-workspace
 
 .DS_Store
+
+# Image outputs
+output/
