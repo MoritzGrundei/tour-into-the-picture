@@ -61,7 +61,6 @@ classdef Receiver < handle
             
             % construct room
             hfig = plot_3D_room(walls);
-            
 
             % add foreground objects
             foregroundCoordinates = cell(numForegroundObjects);
