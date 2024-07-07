@@ -21,6 +21,17 @@
 
 <h3>12-Points Estimation</h3>
 
+  - Estimate the 12 vertices of the 3D room using the 2D pixel coordinates of the vanishing point and the inner rectangle
+  - draw 4 radial lines where each radial line starts at the vanishing point and intersects one of the vertices of the inner rectangle
+  - the intersections of the radial lines with the image borders on the top, right, left and at the bottom yield the 12 coordinates of the room vertices described in the paper
+  - Step-by-Step:
+    1. compute slope and y-intercept using the given coordinates of the inner rectangle and the vanishing point
+    2. assuming that the height of the image is n and the width of the image is m, calculate the corresponding coordinates of the intersections using the linear functions where
+      - top left radial line intersects with x=1 and y=1
+      - top right radial line intersects with x=n and y=1
+      - bottom left radial line intersects with x=1 and y=m
+      - bottom right radial line intersects with x=n and y=m
+
 <h3>Compute Room Dimensions</h3>
 
   - Room width and room heigth get defined by the number of pixels in the background rectangle
