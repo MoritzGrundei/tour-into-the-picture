@@ -22,8 +22,8 @@
 <h3>12-Points Estimation</h3>
 
 <h3>Compute Room Dimensions</h3>
-* Room width and room heigth get defined by the number of pixels in the background rectangle
-* Compute the distances of the points
+  * Room width and room heigth get defined by the number of pixels in the background rectangle
+  * Compute the distances of the points
 
 <h3>3D Room Reconstruction</h3>
 
