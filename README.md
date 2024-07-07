@@ -20,7 +20,7 @@
 <h3>Foreground Object Segmentation</h3>
 
 <h3>12-Points Estimation</h3>
-
+  ![image info](./img_poster/12_Point_Plot.png)
   - Estimate the 12 vertices of the 3D room using the 2D pixel coordinates of the vanishing point and the inner rectangle
   - draw 4 radial lines where each radial line starts at the vanishing point and intersects one of the vertices of the inner rectangle
   - the intersections of the radial lines with the image borders on the top, right, left and at the bottom yield the 12 coordinates of the room vertices described in the paper
