@@ -24,7 +24,10 @@
 <h3>Compute Room Dimensions</h3>
 
   - Room width and room heigth get defined by the number of pixels in the background rectangle
-  - Compute the distances of the points
+  - Compute the euclidean distances between the 12 points and the vanishing point
+  - Define the z-coordinate of point 4 as one in order to have a referenz in the z-dimension
+  - Compute the relative z-coordinates of points 2,5,6 and 10 with the distance ratios and referens of point 4
+  - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
 
 <h3>3D Room Reconstruction</h3>
 
