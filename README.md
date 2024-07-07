@@ -1,11 +1,28 @@
 <h1>Tour-Into-The-Picture (TIP)</h1>
 
+Computer Vision Challenge SoSe 2024
+
+Contributor: Martin Ausborn, Moritz Grundei, Kevin Hu, Thomas Schwarzfischer, Andreas Umlauf, Chien-Chun Wang
+
+Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour into the picture: using a spidery mesh interface to make animation from a single image. In Proceedings of the 24th annual conference on Computer graphics and interactive techniques, pages 225-232, 1997.
+
+// Platzhalter Poster
 
 <h2>Demo</h2>
 
 
 <h2>Assignments</h2>
 
+  - create Graphical User Interface which enables
+      - selecting 2D image from the device
+      - define vanishing point and inner rectangle
+      - change the perspective of the room
+  - reconstruct 3D image from a single 2D image
+  - the algorithm should...
+      - handle different image sizes
+      - handle images where the planes are not clearly defined
+      - handle images without a clear vanishing point
+      - handle unknown images (test images)
 
 <h2>How to use? - Quick Start</h2>
 
