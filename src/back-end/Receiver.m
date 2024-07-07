@@ -80,6 +80,11 @@ classdef Receiver < handle
 
             % Extract image name from file path
             [~, imageName, ~] = fileparts(imageFileName);
+            
+            % Create 'output' directory if it doesn't exist
+            if ~exist('output', 'dir')
+                mkdir('output');
+            end
 
             % Check for existing files and update the filename accordingly
             counter = 1;
