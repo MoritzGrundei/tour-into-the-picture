@@ -40,6 +40,29 @@
   - Compute the relative z-coordinates of points 2,5,6 and 10 with the distance ratios and referens of point 4
   - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
 
+
+<h3>Foreground Positioning  
+  
+  - The foreground rectangular frame defines the position in the 3D room
+     1. Calculate the wall the foreground object is attached to by checking the cross product of the foreground points with the four vertices of each trapezoid
+     2. Use the projective transformation function to calculate the 3D foreground rectangle points attached to the corresponding wall from 2D coordinates
+
+<h3>Foreground Plotting
+
+  - Iterate through all foreground objects individually
+  - Use the mask of the foreground image and make the mask transparent
+
 <h3>3D Room Reconstruction</h3>
 
-<h2>Challenges</h2>
+  - From the 12 points the five walls are defined, consisting of four trapezoidal shapes and one background rectangle 
+  - Transform the trapezoidal shapes into rectangles:
+     1. Calculate the transformation Matrix with fitgeotrans and the according room dimnesions of the image
+     2. Apply the transformation with the Image Processing Toolbox function imwarp
+  - Return each wall seperately
+  - Create 3D plot with the properties: 
+     1. The x and y plane define the background wall
+     2. The z dimension is defining the depth of the plot 
+  - Define the camera perspective and toolbar to create 3D view 
+  - Create 3D room tour by continuously updating the camera position, include the foreground position in the tour
+
+<h2>Challenges</h2>o
