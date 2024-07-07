@@ -56,8 +56,8 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
   - Room width and room heigth get defined by the number of pixels in the background rectangle
   - Compute the euclidean distances between the 12 points and the vanishing point
   - Define the z-coordinate of point 4 as one in order to have a referenz in the z-dimension
-    $$\displaystyle z_6 = \frac{\left \lVert v_{vp}-v_4 \right \rVert_2}{\left \lVert v_{vp}-v_6 \right \rVert_2} *z_4$$
   - Compute the relative z-coordinates of points 2,5,6 and 10 with the distance ratios and referens of point 4
+    $$\displaystyle z_6 = \frac{\left \lVert v_{vp}-v_4 \right \rVert_2}{\left \lVert v_{vp}-v_6 \right \rVert_2} *z_4$$
   - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
 
 
