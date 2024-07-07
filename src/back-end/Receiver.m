@@ -18,33 +18,8 @@ classdef Receiver < handle
             
             % estimate width, height of the wall at the back as well as the
             % depth of the room
-            [ceilingDepth, floorDepth, rightDepth, leftDepth, roomHeight, roomWidth] = get_room_dimensions(imageSource.CData, points,vanishingPoint);
+            [ceilingDepth, floorDepth, rightDepth, leftDepth, roomHeight, roomWidth] = get_room_dimensions(background, points,vanishingPoint);
 
-            % cut foreground objects (+retouching)
-            
-            % redefine 12 points for perspective
-            % Points = [points(:, 2), points(:, 1)];
-
-            % calculate each wall perspective
-            % init array 
-            % tform = cell(5);
-            % walls = cell(5);
-            % floor cell{1}
-            % left wall  cell{2}
-            % right wall cell{3}
-            % ceiling cell{4}
-            % rear wall cell{5}
-            % 
-            % [walls{1}, tform{1}] = projective_transformation(imageSource.CData,Points(1, :),Points(2, :),Points(3, :), Points(4, :), roomWidth, floorDepth);
-            % [walls{2}, tform{2}] = projective_transformation(imageSource.CData,Points(11, :),Points(7, :),Points(5, :), Points(1, :), leftDepth, roomHeight);
-            % [walls{3}, tform{3}] = projective_transformation(imageSource.CData,Points(8, :),Points(12, :),Points(2, :), Points(6, :), rightDepth, roomHeight);
-            % [walls{4}, tform{4}] = projective_transformation(imageSource.CData,Points(9, :),Points(10, :),Points(7, :),Points(8, :), roomWidth, ceilingDepth);
-            % [walls{5}, tform{5}] = projective_transformation(imageSource.CData,Points(7, :),Points(8, :),Points(1, :),Points(2, :), roomWidth, roomHeight);
-            % 
-            % % construct room
-            % plot_3D_room(walls);
-
-            
             % generate masks for foreground objects
             foregroundMasks = zeros(size(background,1), size(background, 2), length(foregroundPolygons));
             foregroundFrames = zeros(4,2,length(foregroundPolygons));
@@ -86,17 +61,26 @@ classdef Receiver < handle
             
             % construct room
             hfig = plot_3D_room(walls);
+            
 
             % add foreground objects
+            foregroundCoordinates = cell(numForegroundObjects);
             for i = 1:numForegroundObjects
+                foregroundCoordinates{i} = zeros(4, 3);
                 % trim mask to frame dimensions
                 frame = foregroundFrames(:,:,i);
                 mask = foregroundMasks(frame(1,2):frame(4,2),frame(1,1):frame(2,1), i);
                 % plot surface
-                plot_foreground_object(Points, foregroundFrames(:,:,i), tform, walls, foregroundTextures{i}, mask);
+                %foregroundCoordinates{i}(:, :) = plot_foreground_object(Points, foregroundFrames(:,:,i), tform, walls, foregroundTextures{i}, mask);
+                [TL, TR, BR, BL] = plot_foreground_object(Points, foregroundFrames(:,:,i), tform, walls, foregroundTextures{i}, mask);
+                foregroundCoordinates{i}(1, :) = TL;
+                foregroundCoordinates{i}(2, :) = TR;
+                foregroundCoordinates{i}(3, :) = BR;
+                foregroundCoordinates{i}(4, :) = BL;
             end
-
-            pan_camera(hfig, roomWidth, roomHeight, floorDepth);
+            
+            % have the camera do a roomtour, including foreground objects
+            pan_camera(hfig, roomWidth, roomHeight, floorDepth, foregroundCoordinates);
 
         end
     end
