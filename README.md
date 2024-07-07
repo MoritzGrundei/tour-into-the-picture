@@ -52,6 +52,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 
 <h2>Workflow</h2>
 
+![Workflow image](https://github.com/MoritzGrundei/cv-challenge/blob/main/img_poster/Workflow_plot.png)
 
 <h2>Step-by-Step</h2>
 
