@@ -26,13 +26,13 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 
 <h2>How to use? - Quick Start</h2>
   
-  - Software requirements:
+  - **Software requirements**:
       - MATLAB R2024a
       - MATLAB Toolbox:
           - Computer Vision Toolbox
           - Image Processing Toolbox
           - Statistics and Machine Learning Toolbox
-  - Step-by-Step manual:
+  - **Step-by-Step manual**:
     1. clone repository onto your local machine
     2. open project on MATLAB
     3. add src folder and its subfolders to path and run main.m
@@ -45,7 +45,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
     7. the radial lines through the vanishing points and the vertices of the inner rectangle are displayed, the vanishing point and the inner rectangle can still be adjusted
     8. (optional) if there are foreground objects in the image, one can press "Optional: Select Foreground Rectangle" to draw a polygon around the object or multiple polygons around objects
     9. Once the configuration is done, press "Submit" to start the reconstruction
-    10. one can always reset the configuration by pressing "Reset"
+    10. one can always reset the configuration by pressing "Reset" to repeat steps 4 - 8
 
 
 <h2>Workflow</h2>
