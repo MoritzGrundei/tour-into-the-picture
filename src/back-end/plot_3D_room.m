@@ -13,7 +13,7 @@ ceilingDepth = size(walls{4}, 1);
 average_depth = (leftDepth + rightDepth + ceilingDepth + floorDepth) / 4;
 
 % Create figure
-f = figure;
+f = figure('Name','3D Room Visualization', 'NumberTitle', 'off', 'Color', 'black');
 
 % Plot floor
 floorX = [0 roomWidth; 0 roomWidth];
@@ -66,7 +66,8 @@ rotate3d on;
 % Set camera
 % Create toolbar for camera movement
 cameratoolbar(f);
-
+% Change prinicpal axis to Y
+cameratoolbar(f, 'SetCoordSys', 'y');
 ax = gca;
 % Set camera target at slightly in front of center of rear wall
 ax.CameraTarget = [roomWidth / 2, roomHeight / 2, average_depth * 0.1];
@@ -80,8 +81,5 @@ ax.Projection = 'perspective';
 
 % Turn off axis scaling
 axis equal;
-
-% Show the plot
-hold off;
 
 end

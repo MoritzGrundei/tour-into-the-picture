@@ -1,7 +1,11 @@
-function [TL, TR, BR, BL] = foreground_coordinates(tform, rectangle, wall_number, walls)
+function [TL, TR, BR, BL] = foreground_coordinates(tform, frame, wall_number, walls)
 % Calculate the 3D coordiantes with the wall_number and the 2D coordinates
 % of the foreground rectangle
-% input: transformed image tform, foreground rectangle, wall_number, walls
+% inputs: 
+%   tform: projective transformation for this wall, 
+%   frame: rectangular foreground frame, 
+%   wall_number: number of wall (1:floor, 2:left, 3:right, 4:ceiling, 5:rear), 
+%   walls: wall images (for extracting room dimensions)
 
 % extract room dimensions from input arguments
 roomWidth = size(walls{5}, 2);
@@ -19,9 +23,15 @@ BL_2D = zeros(2);
 
 if wall_number == 1
     % floor
+<<<<<<< HEAD
     [BR_2D(1), BR_2D(2)] = transformPointsForward(tform, rectangle(3,1), rectangle(3,2));
     [BL_2D(1), BL_2D(2)] = transformPointsForward(tform, rectangle(4,1), rectangle(4,2));
     rectangle_height = abs((rectangle(4,2)-rectangle(1,2))/(rectangle(2,1)-rectangle(1,1))*(BR_2D(1)-BL_2D(1))); 
+=======
+    [BR_2D(1), BR_2D(2)] = transformPointsForward(tform, frame(3,1), frame(3,2));
+    [BL_2D(1), BL_2D(2)] = transformPointsForward(tform, frame(4,1), frame(4,2));
+    rectangle_height = abs((frame(4,2)-frame(1,2))/(frame(2,1)-frame(1,1))*(BR_2D(1)-BL_2D(1))); 
+>>>>>>> main
     z_pos = BL_2D(2);
     
     BR = [BR_2D(1), 0, z_pos];
@@ -31,9 +41,15 @@ if wall_number == 1
 
 elseif wall_number == 2
     % left wall
+<<<<<<< HEAD
     [TL_2D(1), TL_2D(2)] = transformPointsForward(tform, rectangle(1,1), rectangle(1,2));
     [BL_2D(1), BL_2D(2)] = transformPointsForward(tform, rectangle(4,1), rectangle(4,2));
     rectangle_width = abs((rectangle(2,1)-rectangle(1,1))/(rectangle(4,2)-rectangle(1,2))*(BL_2D(2)-TL_2D(2)));
+=======
+    [TL_2D(1), TL_2D(2)] = transformPointsForward(tform, frame(1,1), frame(1,2));
+    [BL_2D(1), BL_2D(2)] = transformPointsForward(tform, frame(4,1), frame(4,2));
+    rectangle_width = abs((frame(2,1)-frame(1,1))/(frame(4,2)-frame(1,2))*(BL_2D(2)-TL_2D(2)));
+>>>>>>> main
     z_pos = leftDepth - TL_2D(1);
 
     TL = [0, roomHeight - TL_2D(2), z_pos];
@@ -43,9 +59,15 @@ elseif wall_number == 2
 
 elseif wall_number == 3 
     % right wall
+<<<<<<< HEAD
     [TR_2D(1), TR_2D(2)] = transformPointsForward(tform, rectangle(2,1), rectangle{2,2});
     [BR_2D(1), BR_2D(2)] = transformPointsForward(tform, rectangle(3,1), rectangle(3,2));
     rectangle_width = abs((rectangle(2,1)-rectangle(1,1))/(rectangle(4,2)-rectangle(1,2))*(TR_2D(2)-BR_2D(2)));
+=======
+    [TR_2D(1), TR_2D(2)] = transformPointsForward(tform, frame(2,1), frame(2,2));
+    [BR_2D(1), BR_2D(2)] = transformPointsForward(tform, frame(3,1), frame(3,2));
+    rectangle_width = abs((frame(2,1)-frame(1,1))/(frame(4,2)-frame(1,2))*(TR_2D(2)-BR_2D(2)));
+>>>>>>> main
     z_pos = TR_2D(1);
 
     TR = [roomWidth, roomHeight - TR_2D(2), z_pos];
@@ -55,9 +77,15 @@ elseif wall_number == 3
 
 elseif wall_number == 4
     % ceiling
+<<<<<<< HEAD
     [TL_2D(1), TL_2D(2)] = transformPointsForward(tform, rectangle(1,1), rectangle(1,2));
     [TR_2D(1), TR_2D(2)] = transformPointsForward(tform, rectangle(2,1), rectangle(2,2));
     rectangle_height = abs((rectangle(1,2)-rectangle(4,2))/(rectangle(1,2)-rectangle(2,2))*(TR_2D(1)-TL_2D(1)));
+=======
+    [TL_2D(1), TL_2D(2)] = transformPointsForward(tform, frame(1,1), frame(1,2));
+    [TR_2D(1), TR_2D(2)] = transformPointsForward(tform, frame(2,1), frame(2,2));
+    rectangle_height = abs((frame(1,2)-frame(4,2))/(frame(1,1)-frame(2,1))*(TR_2D(1)-TL_2D(1)));
+>>>>>>> main
     z_pos = ceilingDepth - TL_2D(2);
 
     TL = [TL_2D(1), roomHeight, z_pos]; 

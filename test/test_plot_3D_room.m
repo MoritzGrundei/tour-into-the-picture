@@ -124,7 +124,7 @@ polygon = [
     ];
 
 % add foreground objects
-plot_foreground_object(Points, 1, rectangle, 1, tform, walls, foreground_object)
+plot_foreground_object(Points, rectangle, tform, walls, foreground_object)
 
 
 
