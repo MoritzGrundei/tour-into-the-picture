@@ -60,13 +60,13 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
   - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
 
 
-<h3>Foreground Positioning  
+<h3>Foreground Positioning</h3>  
   
   - The foreground rectangular frame defines the position in the 3D room
      1. Calculate the wall the foreground object is attached to by checking the cross product of the foreground points with the four vertices of each trapezoid
      2. Use the projective transformation function to calculate the 3D foreground rectangle points attached to the corresponding wall from 2D coordinates
 
-<h3>Foreground Plotting
+<h3>Foreground Plotting</h3>
 
   - Iterate through all foreground objects individually
   - Use the mask of the foreground image and make the mask transparent
