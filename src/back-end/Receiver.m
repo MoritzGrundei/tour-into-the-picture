@@ -8,7 +8,7 @@ classdef Receiver < handle
         function obj = Receiver()
         end
 
-        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons)
+        function plot3dRoom(obj, imageSource, backgroundPolygon, vanishingPoint, foregroundPolygons, useSeg)
             % define variables for easier handling
             numForegroundObjects = length(foregroundPolygons);
             background = imageSource.CData;
@@ -24,7 +24,7 @@ classdef Receiver < handle
             foregroundMasks = zeros(size(background,1), size(background, 2), length(foregroundPolygons));
             foregroundFrames = zeros(4,2,length(foregroundPolygons));
             for ii=1:numForegroundObjects
-                [foregroundMasks(:,:,ii), foregroundFrames(:,:,ii)] = polygon_segmentation(background, foregroundPolygons{ii});
+                [foregroundMasks(:,:,ii), foregroundFrames(:,:,ii)] = polygon_segmentation(background, foregroundPolygons{ii}, useSeg);
             end
 
             % cut foreground objects

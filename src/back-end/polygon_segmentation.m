@@ -1,4 +1,4 @@
-function [mask, frame] = polygon_segmentation(image, boundingPolygon)
+function [mask, frame] = polygon_segmentation(image, boundingPolygon, useSeg)
 % POLYGON_SEGMENTATION Segments an image based on a bounding multiedge polygon into foreground and background.
 %
 %    MASK = SEGMENTATION(IMAGE, BOUNDINGPOLYGON) takes an input IMAGE and
@@ -33,8 +33,11 @@ function [mask, frame] = polygon_segmentation(image, boundingPolygon)
     initMask = poly2mask(boundingPolygon(:,1), boundingPolygon(:,2),size(image,1),size(image,2));
     initSubMask = initMask(minY:maxY, minX:maxX);
 
-    subMask = grabCutSegmentation(subImage, initSubMask);
-
+    if useSeg == "On"
+        subMask = grabCutSegmentation(subImage, initSubMask);
+    else 
+        subMask = initSubMask;
+    end
     
     % Initialize a full-size mask of zeros
     mask = zeros(size(image, 1), size(image, 2));
