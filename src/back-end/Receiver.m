@@ -85,7 +85,7 @@ classdef Receiver < handle
             [walls{5}, tform{5}] = projective_transformation(background,Points(7, :),Points(8, :),Points(1, :),Points(2, :),roomWidth,roomHeight);
             
             % construct room
-            plot_3D_room(walls);
+            hfig = plot_3D_room(walls);
 
             % add foreground objects
             for i = 1:numForegroundObjects
@@ -95,6 +95,9 @@ classdef Receiver < handle
                 % plot surface
                 plot_foreground_object(Points, foregroundFrames(:,:,i), tform, walls, foregroundTextures{i}, mask);
             end
+
+            pan_camera(hfig, roomWidth, roomHeight, floorDepth);
+
         end
     end
 end

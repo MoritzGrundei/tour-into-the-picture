@@ -1,0 +1,44 @@
+function pan_camera(hfig, roomWidth, roomHeight, roomDepth)
+%PAN_CAMERA to 4 predefined positions
+% inputs:
+%   hfig: handle to the 3D plot
+%   room dimensions
+
+pos1 = [roomWidth * 0.9, roomHeight * 0.6, roomDepth];
+pos2 = [roomWidth * 0.6, roomHeight * 0.9, roomDepth];
+pos3 = [roomWidth * 0.1, roomHeight * 0.1, roomDepth * 0.6];
+pos4 = [roomWidth * 0.5, roomHeight * 0.5, roomDepth * 1.2];
+
+pause(1);
+% Pan the camera
+go_to_position(hfig, pos1, 2, 0.01);
+pause(1);
+go_to_position(hfig, pos2, 2, 0.01);
+pause(1);
+go_to_position(hfig, pos3, 3, 0.01);
+pause(1);
+go_to_position(hfig, pos4, 3, 0.01);
+end
+
+function go_to_position(hfig, goal, duration, tickRate)
+%GO_TO_POSITION moves the camera to a new position
+% inputs:
+%   hfig: handle to the 3d plot
+%   goal: goal position
+%   duration: duration of the pan
+%   tickRate: tick rate of the camera updates; high values will look
+%       unsmooth
+
+startingPosition = campos();
+
+for i = 0:tickRate:duration
+    if ~ishghandle(hfig)
+        disp('Figure has been closed. Aborting pan.');
+        break;
+    end
+    newPosition = startingPosition + (goal - startingPosition) * (i / duration);
+    campos(newPosition);
+    pause(tickRate);
+end
+
+end
