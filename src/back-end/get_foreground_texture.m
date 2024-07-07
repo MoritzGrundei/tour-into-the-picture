@@ -16,7 +16,4 @@ for channel = 1:3
     masked_channel = whole_image(:,:,channel) .* uint8(mask);
     texture(:,:,channel) = masked_channel(frame(1,2):frame(4,2),frame(1,1):frame(2,1));
 end
-
-figure;
-imshow(texture);
 end
