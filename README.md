@@ -27,10 +27,10 @@
   - Step-by-Step:
     1. compute slope and y-intercept using the given coordinates of the inner rectangle and the vanishing point
     2. assuming that the height of the image is n and the width of the image is m, calculate the corresponding coordinates of the intersections using the linear functions where
-      - top left radial line intersects with x=1 and y=1
-      - top right radial line intersects with x=n and y=1
-      - bottom left radial line intersects with x=1 and y=m
-      - bottom right radial line intersects with x=n and y=m
+        - top left radial line intersects with x=1 and y=1
+        - top right radial line intersects with x=n and y=1
+        - bottom left radial line intersects with x=1 and y=m
+        - bottom right radial line intersects with x=n and y=m
 
 <h3>Compute Room Dimensions</h3>
 
