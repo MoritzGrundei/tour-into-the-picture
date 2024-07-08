@@ -13,7 +13,7 @@ ceilingDepth = size(walls{4}, 1);
 average_depth = (leftDepth + rightDepth + ceilingDepth + floorDepth) / 4;
 
 % Create figure
-hfig = figure('Name','3D Room Visualization', 'NumberTitle', 'off', 'Color', 'black');
+hfig = figure('Name','3D Room Visualization', 'NumberTitle', 'off', 'Color', 'black', 'Position',[200,200,800,800]);
 
 % Plot floor
 floorX = [0 roomWidth; 0 roomWidth];
