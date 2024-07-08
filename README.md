@@ -24,7 +24,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
       - handle images without a clear vanishing point
       - handle unknown images (test images)
 
-<h2>How to use? - Quick Start</h2>
+<h2>How to use?</h2>
   
   - **Software requirements**:
       - MATLAB R2024a
