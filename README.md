@@ -12,7 +12,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 
 [![YouTube Video](https://img.youtube.com/vi/Qzywup2Et_M/0.jpg)](https://youtu.be/Qzywup2Et_M)
 
-<h2>Assignments</h2>
+<h2>Goals</h2>
 
   - Create a Graphical User Interface which enables:
       - Selecting a 2D image from the device
