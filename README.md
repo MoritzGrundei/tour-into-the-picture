@@ -83,7 +83,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
   - Define the z-coordinate of point 4 as one in order to have a referenz in the z-dimension
   - Compute the relative z-coordinates of points 2,5,6 and 10 with the distance ratios and referens of point 4
     $$\displaystyle z_6 = \frac{\left \lVert v_{vp}-v_4 \right \rVert_2}{\left \lVert v_{vp}-v_6 \right \rVert_2} *z_4$$
-  - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot
+  - Scale the resulting relative z-coordinates based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot while keeping a low runtime
 
 
 <h3>Foreground Positioning</h3>  
