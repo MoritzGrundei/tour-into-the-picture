@@ -19,16 +19,6 @@ go_to_position(hfig, pos3, 3, 0.01);
 pause(0.5);
 go_to_position(hfig, pos4, 3, 0.01);
 
-for i = 1:length(foregroundCoordinates)
-    posi = [(foregroundCoordinates{i}(1, 1) + foregroundCoordinates{i}(2, 1)) / 2, ...
-        (foregroundCoordinates{i}(1, 2) + foregroundCoordinates{i}(4, 2)) / 2, ...
-        max(foregroundCoordinates{i}(1, 3) * 1.2, foregroundCoordinates{i}(1, 3) + roomDepth * 0.2)];
-    go_to_position(hfig, posi, 2, 0.01);
-    pause(1);
-    go_to_position(hfig, pos4, 1, 0.01);
-    pause(0.5);
-end
-
 end
 
 function go_to_position(hfig, goal, duration, tickRate)

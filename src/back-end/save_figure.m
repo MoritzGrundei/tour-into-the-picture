@@ -26,12 +26,12 @@ end
 counter = 1;
 
 % Construct the initial file path using fullfile
-saveFilename = fullfile(outputDir, [imageName, '3Dplot', sprintf('%03d', counter), '.fig']);
+saveFilename = fullfile(outputDir, [imageName, '_3Dplot_', sprintf('%03d', counter), '.fig']);
 
 % Loop to ensure the filename is unique
 while exist(saveFilename, 'file')
     counter = counter + 1;
-    saveFilename = fullfile(outputDir, [imageName, '3Dplot', sprintf('%03d', counter), '.fig']);
+    saveFilename = fullfile(outputDir, [imageName, '_3Dplot_', sprintf('%03d', counter), '.fig']);
 end
 
 % Save the figure to a .fig file
