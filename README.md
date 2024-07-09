@@ -60,11 +60,13 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 <h2>Detailed Data Processing Flow</h2>
 
 <h3>User Interaction</h3>
+
   - The vanishing point and the background rectangle are selected by the user.
   - The vanishing lines are aligned with the edges of the scene.
   - A polygon is drawn around each foreground object. If only a rough selection is made, segmentation is switched on.
 
 <h3>Foreground Object Segmentation</h3>
+
   - The foreground polygon is fitted into a rectangle.
   - Foreground/background segmentation is computed using grabcut on superpixels.
 
