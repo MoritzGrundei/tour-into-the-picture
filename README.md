@@ -51,7 +51,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
     11. After a successful 3D reconstruction, a window with the tour into the reconstructed room will open.
     12. After the video, you may move the camera to move freely in the room by going forward/backward, to the right/left, or rotating the room.
     13. The figure is saved automatically into the output folder. To reopen it, double-click in MATLAB.
-    14. To control the camera, select "View" -> "Camera."
+    14. To control the camera, select "View" -> "Camera Toolbar."
 
 <h2>Workflow</h2>
 
