@@ -94,27 +94,34 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
     $$\displaystyle z_6 = \frac{\left \lVert v_{vp}-v_4 \right \rVert_2}{\left \lVert v_{vp}-v_6 \right \rVert_2} *z_4$$
   - The resulting relative z-coordinates are scaled based on the pixel number in the image and a constant factor to improve the quality in the 3D-plot while keeping a low runtime.
 
-<h3>Foreground Positioning</h3>  
-  
-  - The rectangular frame of the foreground object defines its position in the 3D room.
-    1. The wall where the foreground object is attached to is calculated. An object is assigned to a wall if the cross products of its corners with the vertices of a trapezoid are positive.
-    2. The projective transformation function is used to calculate the 3D foreground rectangle points from the 2D coordinates.
+<h3>3D Room Reconstruction</h3>
+
+  - The "12 points" data delivers the edges of every wall, including floor and ceiling.
+  - These span up trapezoids for everything but the rear wall, which forms a rectangle.
+  - The trapezoids are transformed to rectangles with shapes according to the room dimensions.
+     1. Calculate the projective transformation Matrix with fitgeotrans.
+     2. Apply the transformation with the Image Processing Toolbox function imwarp.
+     3. The size of the rectangles are determined by the room dimensions.
+  - The rear wall is simply stretched to meet the desired room dimensions.
+  - Create the 3D plot
+     1. The x and y plane defines the background wall, the z dimension defines the depth of the plot
+     2. The background rectangle and the transformed walls are inserted with their respective depths.
+
+<h3>Foreground Positioning</h3>
+
+   - In order to define the position of a foreground object, we lay a rectangular frame around the 2D object.
+   - The corners of this frame will be used to determine the wall to which the object should be attached to.
+     1. While looking at the 2D input image, when 2 corners of the foreground frame lie within the trapezoid of one of the walls, we assign the object to this wall.
+     2. This is done by verifying that both 2 corners of the frame are to the right of each edge of the trapezoid using the cross product method.
+   - The 3D coordinates will then be calculated by applying the previously determined projective transformation to the 2D coordinates and converting them to 3D.
 
 <h3>Foreground Plotting</h3>
 
-  - Each foreground object is iterated through individually.
-  - The mask of the foreground image is used and the mask is made transparent.
+  - Finally, every foreground object is inserted.
+  - Because the texture has a rectangular shape, an alpha mask is applied to render pixels not belonging to the object transparent.
 
-<h3>3D Room Reconstruction</h3>
+<h3>Room Tour and Plot Navigation</h3>
 
-  - The five walls are defined from the 12 points, consisting of four trapezoidal shapes and one background rectangle.
-  - The trapezoidal shapes are transformed into rectangles:
-    1. The transformation matrix is calculated with fitgeotrans and the corresponding room dimensions of the image.
-    2. The transformation is applied with the Image Processing Toolbox function imwarp.
-  - Each wall is returned separately.
-  - A 3D plot is created with the properties:
-    1. The x and y plane define the background wall.
-    2. The z dimension defines the depth of the plot.
-  - The camera perspective and toolbar are defined to create a 3D view.
-  - A 3D room tour is created by continuously updating the camera position, including the foreground position in the tour.
+  - The plot is shown and a room tour is started, where the camera shows different perspectives of the reconstructed room.
+  - Afterwards, the user can use the mouse to intuitively navigate through the room with a camera toolbar.
 
