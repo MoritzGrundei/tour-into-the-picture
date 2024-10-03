@@ -10,7 +10,7 @@ Implementation based on: Youichi Horry, Ken-Ichi Anjyo, and Kiyoshi Arai. Tour i
 
 <h2>Demo</h2>
 
-[![YouTube Video](https://img.youtube.com/vi/Qzywup2Et_M/0.jpg)](https://youtu.be/Qzywup2Et_M)
+[![YouTube Video](https://img.youtube.com/vi/Qzywup2Et_M/0.jpg)](https://youtu.be/Ujv6dg4l4xI)
 
 <h2>Goals</h2>
 
